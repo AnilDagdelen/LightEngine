@@ -34,6 +34,9 @@
     <Filter Include="Header Files\Defines\Context">
       <UniqueIdentifier>{309b4e89-9aaa-4073-a5c5-ea64305bafaa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Core\Systems\Base">
+      <UniqueIdentifier>{7ad08c6f-7c4a-45de-81e5-bb68edd959ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
