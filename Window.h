@@ -73,14 +73,14 @@ protected:
 private:
 	bool CenterWindow();
 
-	LRESULT CALLBACK Window_Procedure(HWND hWnd, UINT msg, WPARAM wparam, LPARAM lparam);
+	
 
 	//members
 	HWND m_hWindow;
 	HDC m_hDC;
 	HINSTANCE m_hInst;
 
-	int m_Widht;
+	int m_Width;
 	int m_Height;
 
 	int m_Bits;

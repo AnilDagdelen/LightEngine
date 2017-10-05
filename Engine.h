@@ -52,8 +52,8 @@ public:
 private:
 
 	int Initialize();
-	int Draw(const Context& context);
-	int Update(const Context& context);
+	int Draw( Context& context);
+	int Update( Context& context);
 	int ShutDown();
 
 
