@@ -35,8 +35,11 @@ struct SystemData
 class System :public UObject
 {
 	friend class Engine;
-	
+
 public:
+	SystemType GetType() { return m_SystemType; }
+
+protected:
 	System(const SystemData& data);
 	virtual ~System();
 
@@ -44,7 +47,6 @@ public:
 	virtual bool Update(Context& context) { return UObject::Update(context); }
 	virtual bool ShutDown() { return UObject::ShutDown(); }
 
-	SystemType GetType() { return m_SystemType; }
 
 protected:
 	SystemType m_SystemType;
