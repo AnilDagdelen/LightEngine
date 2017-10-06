@@ -83,7 +83,7 @@ private:
 	int m_Width;
 	int m_Height;
 
-	int m_Bits;
+	byte m_Bits;
 
 	bool m_bFullScreen;
 

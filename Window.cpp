@@ -326,7 +326,7 @@ bool Window::CenterWindow() {
 	int windowheight = R.bottom - R.top;
 
 	int posx = GetSystemMetrics(SM_CXSCREEN) / 2 - windowwidth / 2;
-	int posy = GetSystemMetrics(SM_CXSCREEN) / 2 - windowheight / 2;
+	int posy = GetSystemMetrics(SM_CYSCREEN) / 2 - windowheight / 2;
 
 	if (SetWindowPos(m_hWindow, NULL, posx, posy, windowwidth, windowheight, SWP_SHOWWINDOW) == NULL)
 		return false;
