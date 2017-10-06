@@ -37,6 +37,18 @@
     <Filter Include="Header Files\Core\Systems\Base">
       <UniqueIdentifier>{7ad08c6f-7c4a-45de-81e5-bb68edd959ea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Math">
+      <UniqueIdentifier>{8ae2a2fe-90d2-4f44-a0c6-6acbd2453ae2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Systems\Game">
+      <UniqueIdentifier>{257d47fa-bd40-4be0-bcfc-fffab648874c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Systems\Window">
+      <UniqueIdentifier>{a6c729c7-52a0-4273-9c81-d8eda85a7daa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Systems\Graphics">
+      <UniqueIdentifier>{595fd24b-a6a4-46c0-92e3-ac10aafe7a1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -48,13 +60,31 @@
     <ClCompile Include="Engine.cpp">
       <Filter>Header Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Header Files\Core\Systems</Filter>
-    </ClCompile>
     <ClCompile Include="UObject.cpp">
       <Filter>Header Files\SceneGraph\Base</Filter>
     </ClCompile>
+    <ClCompile Include="Matrix2D.cpp">
+      <Filter>Header Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Rect2D.cpp">
+      <Filter>Header Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2D.cpp">
+      <Filter>Header Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Header Files\Core\Systems\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>Header Files\Core\Systems\Graphics</Filter>
+    </ClCompile>
     <ClCompile Include="Window.cpp">
+      <Filter>Header Files\Core\Systems\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsDeviceManager.cpp">
+      <Filter>Header Files\Core\Systems\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -77,16 +107,40 @@
     <ClInclude Include="Engine.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files\Core\Systems</Filter>
-    </ClInclude>
     <ClInclude Include="UObject.h">
       <Filter>Header Files\SceneGraph\Base</Filter>
     </ClInclude>
     <ClInclude Include="context.h">
       <Filter>Header Files\Defines\Context</Filter>
     </ClInclude>
+    <ClInclude Include="Matrix2D.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Rect2D.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2D.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="d2dutill.h">
+      <Filter>Header Files\Defines</Filter>
+    </ClInclude>
+    <ClInclude Include="color.h">
+      <Filter>Header Files\Defines</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files\Core\Systems\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>Header Files\Core\Systems\Graphics</Filter>
+    </ClInclude>
     <ClInclude Include="Window.h">
+      <Filter>Header Files\Core\Systems\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsDeviceManager.h">
+      <Filter>Header Files\Core\Systems\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

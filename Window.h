@@ -54,9 +54,9 @@ public:
 	int GetWidth();
 	int GetHeight();
 
-	HWND GetWindowHandle();
-	HDC GetDeviceContext();
-	HINSTANCE GetInstance();
+	HWND GetWindowHandle() { return m_hWindow; }
+	HDC GetDeviceContext() { return m_hDC; }
+	HINSTANCE GetInstance() { return m_hInst; }
 
 	ResizeData& GetResizeData() { return m_ResizeData; }
 

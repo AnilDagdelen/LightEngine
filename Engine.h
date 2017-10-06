@@ -56,7 +56,8 @@ private:
 	int Update( Context& context);
 	int ShutDown();
 
-
+	//Check if we need to resize the screen
+	void CheckResize();
 	//Add a core system to the engine
 	int AddSystem(System* psys);
 	//Retrieve a core system from the engine

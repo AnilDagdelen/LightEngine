@@ -40,9 +40,9 @@ public:
 	const std::tstring& GetName() { return m_Name; }
 
 	bool IsInitialized() const { return m_bIsInitialized; }
-	bool IsPostInitialized() const { return m_bIsPostContentLoaded; }
+	bool IsPostInitialized() const { return m_bIsPostInitialized; }
 	bool IsContentLoaded() const { return m_bIsContentLoaded; }
-	bool IsPostContentLoaded() const { return m_bIsContentLoaded; }
+	bool IsPostContentLoaded() const { return m_bIsPostContentLoaded; }
 	
 	void SetCanTick(bool canTick) { m_bCanTick = canTick; }
 	bool CanTick()  const { return m_bCanTick; }
