@@ -7,6 +7,7 @@
 #include"Game.h"
 #include"Window.h"
 #include"Graphics.h"
+#include"EngineTimer.h"
 
 #include"GraphicsDeviceManager.h"
 
@@ -82,11 +83,15 @@ int Engine::Initialize() {
 		return false;
 	if (!AddSystem(new Graphics(GraphicsData(GetSystem<Window>(SystemType::Sys_Window)))))
 		return false;
+	if (!AddSystem(new EngineTimer(EngineTimerData())))
+		return false;
 
 	//Initialize the system
 	if (!m_mapSystems[SystemType::Sys_Window]->Initialize())
 		return false;
 	if (!m_mapSystems[SystemType::Sys_Graphics]->Initialize())
+		return false; 
+	if (!m_mapSystems[SystemType::Sys_EngineTimer]->Initialize())
 		return false;
 
 	GRAPHICSDEVICEMANAGER->SetGraphics(GetSystem<Graphics>(SystemType::Sys_Graphics));

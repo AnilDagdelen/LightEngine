@@ -17,7 +17,7 @@ enum SystemType
 	Sys_Game,
 	Sys_Input,
 	Sys_Graphics,
-	Sys_GameTimer,
+	Sys_EngineTimer,
 
 	Sys_MAX
 };

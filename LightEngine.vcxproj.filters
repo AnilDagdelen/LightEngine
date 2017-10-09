@@ -49,6 +49,12 @@
     <Filter Include="Header Files\Core\Systems\Graphics">
       <UniqueIdentifier>{595fd24b-a6a4-46c0-92e3-ac10aafe7a1f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Core\Systems\Graphics\Rendering">
+      <UniqueIdentifier>{102414c4-19a0-46ac-8aa8-579cdf0a19ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Systems\Timer">
+      <UniqueIdentifier>{75945fb6-4d97-4835-add6-dba29a2c922e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -85,7 +91,13 @@
       <Filter>Header Files\Core\Systems\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files\Core\Systems\Graphics\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Header Files\Core\Systems\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineTimer.cpp">
+      <Filter>Header Files\Core\Systems\Timer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -141,7 +153,13 @@
       <Filter>Header Files\Core\Systems\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Renderer.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Core\Systems\Graphics\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Header Files\Core\Systems\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineTimer.h">
+      <Filter>Header Files\Core\Systems\Timer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
