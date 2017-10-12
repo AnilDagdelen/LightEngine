@@ -14,7 +14,7 @@
 
 
 
-Timer::Timer(const std::tstring& name):UObject(name),
+Timer::Timer(const std::tstring& name):BaseObject(name),
 m_SecondsPerCount(0.0),
 m_DeltaTime(-1.0),
 m_BaseTime(0),
@@ -45,16 +45,16 @@ Timer::~Timer()
 
 bool Timer::Initialize() {
 
-	UObject::Initialize();
+	BaseObject::Initialize();
 	Start();
 
 	return true;
 }
 bool Timer::PostInitialize() { 
-	return UObject::PostInitialize();
+	return BaseObject::PostInitialize();
 }
 bool Timer::Update(Context& context) {
-	UObject::Update(context);
+	BaseObject::Update(context);
 	if (m_bStopped)
 	{
 		m_DeltaTime = 0.0;
@@ -82,7 +82,7 @@ bool Timer::Update(Context& context) {
 
 }
 bool Timer::ShutDown() { 
-	UObject::ShutDown();
+	BaseObject::ShutDown();
 
 	Stop();
 

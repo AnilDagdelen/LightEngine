@@ -55,6 +55,9 @@
     <Filter Include="Header Files\Core\Systems\Timer">
       <UniqueIdentifier>{75945fb6-4d97-4835-add6-dba29a2c922e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Helpers">
+      <UniqueIdentifier>{e8b515fa-aa14-42d7-97b5-9c9e7580af83}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -65,9 +68,6 @@
     </ClCompile>
     <ClCompile Include="Engine.cpp">
       <Filter>Header Files\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="UObject.cpp">
-      <Filter>Header Files\SceneGraph\Base</Filter>
     </ClCompile>
     <ClCompile Include="Matrix2D.cpp">
       <Filter>Header Files\Math</Filter>
@@ -99,6 +99,15 @@
     <ClCompile Include="EngineTimer.cpp">
       <Filter>Header Files\Core\Systems\Timer</Filter>
     </ClCompile>
+    <ClCompile Include="BaseObject.cpp">
+      <Filter>Header Files\SceneGraph\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Singleton.cpp">
+      <Filter>Header Files\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="TypeChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WinMain.h">
@@ -118,9 +127,6 @@
     </ClInclude>
     <ClInclude Include="Engine.h">
       <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="UObject.h">
-      <Filter>Header Files\SceneGraph\Base</Filter>
     </ClInclude>
     <ClInclude Include="context.h">
       <Filter>Header Files\Defines\Context</Filter>
@@ -160,6 +166,18 @@
     </ClInclude>
     <ClInclude Include="EngineTimer.h">
       <Filter>Header Files\Core\Systems\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseObject.h">
+      <Filter>Header Files\SceneGraph\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectCounter.h">
+      <Filter>Header Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>Header Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeChecker.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

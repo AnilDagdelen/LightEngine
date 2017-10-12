@@ -3,10 +3,10 @@
 
 
 //Include files
-#include "UObject.h"
+#include "BaseObject.h"
 
 
-class Timer :public UObject
+class Timer :public BaseObject
 {
 public:
 	//constructor

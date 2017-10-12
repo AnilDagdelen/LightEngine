@@ -9,7 +9,7 @@
 
 //Struct
 GraphicsData::GraphicsData(Window* wnd)
-	:SystemData(SystemType::Sys_Graphics),
+	:SystemData(_T("Graphics"),SystemType::Sys_Graphics),
 	pWnd(wnd)
 {}
 

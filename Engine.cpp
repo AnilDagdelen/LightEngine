@@ -94,7 +94,8 @@ int Engine::Initialize() {
 	if (!m_mapSystems[SystemType::Sys_EngineTimer]->Initialize())
 		return false;
 
-	GRAPHICSDEVICEMANAGER->SetGraphics(GetSystem<Graphics>(SystemType::Sys_Graphics));
+	Singleton<GraphicsDeviceManager>::CreateInstance();
+	Singleton<GraphicsDeviceManager>::GetInstance()->SetGraphics(GetSystem<Graphics>(SystemType::Sys_Graphics));
 
 	return true;
 }

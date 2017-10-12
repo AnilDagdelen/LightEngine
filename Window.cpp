@@ -5,7 +5,7 @@
 //#include "Logger.h"
 
 //Struct Window
-WindowData::WindowData():SystemData(SystemType::Sys_Invalid),
+WindowData::WindowData():SystemData(_T(""),SystemType::Sys_Invalid),
 width(-1),
 height(-1),
 bits(-1),
@@ -14,7 +14,7 @@ fullscreen(false)
 {}
 
 WindowData::WindowData(int w, int h, const std::tstring& title , int b, bool fs)
-:SystemData(SystemType::Sys_Window),
+:SystemData(_T("Window"), SystemType::Sys_Window),
 width(w),
 height(h),
 bits(b),

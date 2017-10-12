@@ -1,7 +1,7 @@
 #ifndef _SYSTEM_H
 #define _SYSTEM_H
 
-#include "UObject.h"
+#include "BaseObject.h"
 
 //Additional Include Files
 #ifndef _CONTEXT_H
@@ -23,16 +23,16 @@ enum SystemType
 };
 
 //Structs
-struct SystemData
+struct SystemData : ObjectData
 {
 	SystemData();
-	SystemData(const SystemType& type);
+	SystemData(const std::tstring& name, const SystemType& type);
 
 	SystemType systemType;
 
 };
 
-class System :public UObject
+class System :public BaseObject
 {
 	friend class Engine;
 
@@ -43,9 +43,9 @@ protected:
 	System(const SystemData& data);
 	virtual ~System();
 
-	virtual bool Initialize() { return UObject::Initialize(); }
-	virtual bool Update(Context& context) { return UObject::Update(context); }
-	virtual bool ShutDown() { return UObject::ShutDown(); }
+	virtual bool Initialize() { return BaseObject::Initialize(); }
+	virtual bool Update(Context& context) { return BaseObject::Update(context); }
+	virtual bool ShutDown() { return BaseObject::ShutDown(); }
 
 
 protected:

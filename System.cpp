@@ -1,18 +1,20 @@
 #include "System.h"
 
 SystemData::SystemData()
-:systemType(SystemType::Sys_Invalid)
+:ObjectData()
+	,systemType(SystemType::Sys_Invalid)
 {
 
 }
-SystemData::SystemData(const SystemType& type)
-: systemType(type)
+SystemData::SystemData(const std::tstring& name, const SystemType& type)
+	: ObjectData(name)
+	,systemType(type)
 {
 
 }
 
 System::System(const SystemData& data)
-:UObject(),
+:BaseObject(),
 m_SystemType(data.systemType)
 {
 	SetCanDraw(false);

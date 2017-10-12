@@ -4,26 +4,19 @@
 //Forward Decleration
 class Graphics;
 
-//Define
-#define GRAPHICSDEVICEMANAGER (GraphicsDeviceManager::GetInstance())
 
 
 class GraphicsDeviceManager
 {
 	friend class Engine;
-public:
-
-	~GraphicsDeviceManager();
-
-	static GraphicsDeviceManager* GetInstance();
+public: 
+	static GraphicsDeviceManager* m_pInstance;
+	GraphicsDeviceManager(); 
+	~GraphicsDeviceManager();  
 
 	Graphics* GetGraphics() { return m_pGraphics; }
 
-private:
-
-	GraphicsDeviceManager();
-	static GraphicsDeviceManager* m_pInstance;
-
+private: 
 	void SetGraphics(Graphics* graphics) { m_pGraphics = graphics; }
 
 	Graphics* m_pGraphics;

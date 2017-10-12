@@ -12,9 +12,4 @@ GraphicsDeviceManager::GraphicsDeviceManager()
 GraphicsDeviceManager::~GraphicsDeviceManager()
 {
 }
-
-GraphicsDeviceManager* GraphicsDeviceManager::GetInstance() {
-	if (m_pInstance == nullptr)
-		m_pInstance = new GraphicsDeviceManager();
-	return m_pInstance;
-}
+ 

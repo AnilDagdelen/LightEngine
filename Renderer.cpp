@@ -5,9 +5,13 @@
 #include"GraphicsDeviceManager.h"
 
 #ifndef _DELETEMACROS_H
-#include "deletemacros.h"
-
+#include "deletemacros.h"  
 #endif // !_DEFINEMACROS
+
+#ifndef _SINGLETON_H
+#include"Singleton.h"
+#endif // !_SINGLETON_H
+
 
 Renderer::Renderer()
 	:m_InterpolationMode(D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR)
@@ -19,7 +23,7 @@ Renderer::~Renderer()
 
 
 void Renderer::SetColor(const Color& c) {
-	GRAPHICSDEVICEMANAGER->GetGraphics()->GetColorBrush()->SetColor(D2D1::ColorF(c.red, c.green, c.blue, c.alpha));
+	Singleton<GraphicsDeviceManager>::GetInstance()->GetGraphics()->GetColorBrush()->SetColor(D2D1::ColorF(c.red, c.green, c.blue, c.alpha));
 }
 void Renderer::SetColor(float r, float g, float b, float a) {
 	SetColor(Color(r, g, b, a));
@@ -31,7 +35,7 @@ void Renderer::DrawLine(const Vector2D& v1, const Vector2D& v2, float lineWidth)
 	p2.x = (FLOAT)v2.x;	p2.y = (FLOAT)v2.y;
 
 
-	GRAPHICSDEVICEMANAGER->GetGraphics()->GetRenderTarget()->DrawLine(p1, p2, GRAPHICSDEVICEMANAGER->GetGraphics()->GetColorBrush(), lineWidth);
+	Singleton<GraphicsDeviceManager>::GetInstance()->GetGraphics()->GetRenderTarget()->DrawLine(p1, p2, Singleton<GraphicsDeviceManager>::GetInstance()->GetGraphics()->GetColorBrush(), lineWidth);
 
 }
 void Renderer::DrawLine(float x1, float y1, float x2, float y2, float lineWidth) {
@@ -49,13 +53,13 @@ void Renderer::DrawRect(const Vector2D& lefttop, const Vector2D& rightbottom, fl
 }
 void Renderer::DrawRect(const Rect2D& rect, float lineWidth) {
 	D2D1_RECT_F d2dRect = D2D1::RectF((FLOAT)rect.left, (FLOAT)rect.top, (FLOAT)rect.right, (FLOAT)rect.bottom);
-	GRAPHICSDEVICEMANAGER->GetGraphics()->GetRenderTarget()->DrawRectangle(d2dRect, GRAPHICSDEVICEMANAGER->GetGraphics()->GetColorBrush(), lineWidth);
+	Singleton<GraphicsDeviceManager>::GetInstance()->GetGraphics()->GetRenderTarget()->DrawRectangle(d2dRect, Singleton<GraphicsDeviceManager>::GetInstance()->GetGraphics()->GetColorBrush(), lineWidth);
 
 }
 
 void Renderer::DrawCircle(double xcenter, double ycenter, double r, float lineWidth) {
 	D2D1_ELLIPSE ellipse = D2D1::Ellipse(D2D1::Point2((FLOAT)xcenter, (FLOAT)ycenter), (FLOAT)r, (FLOAT)r);
-	GRAPHICSDEVICEMANAGER->GetGraphics()->GetRenderTarget()->DrawEllipse(ellipse, GRAPHICSDEVICEMANAGER->GetGraphics()->GetColorBrush(), lineWidth);
+	Singleton<GraphicsDeviceManager>::GetInstance()->GetGraphics()->GetRenderTarget()->DrawEllipse(ellipse, Singleton<GraphicsDeviceManager>::GetInstance()->GetGraphics()->GetColorBrush(), lineWidth);
 }
 void Renderer::DrawCircle(const Vector2D& center, double r, float linewidth) {
 	DrawCircle(center.x, center.y, r, linewidth);
@@ -89,7 +93,7 @@ void Renderer::FillRect(const Vector2D& lefttop, const Vector2D& rightbottom) {
 }
 void Renderer::FillRect(const Rect2D& rect) {
 	D2D1_RECT_F d2dRect = D2D1::RectF((FLOAT)rect.left, (FLOAT)rect.top, (FLOAT)rect.right, (FLOAT)rect.bottom);
-	GRAPHICSDEVICEMANAGER->GetGraphics()->GetRenderTarget()->FillRectangle(d2dRect, GRAPHICSDEVICEMANAGER->GetGraphics()->GetColorBrush());
+	Singleton<GraphicsDeviceManager>::GetInstance()->GetGraphics()->GetRenderTarget()->FillRectangle(d2dRect, Singleton<GraphicsDeviceManager>::GetInstance()->GetGraphics()->GetColorBrush());
 
 }
 
@@ -98,7 +102,7 @@ void Renderer::FillCircle(const Vector2D& center, double r) {
 }
 void Renderer::FillCircle(double xcenter, double ycenter, double r) {
 	D2D1_ELLIPSE ellipse = D2D1::Ellipse(D2D1::Point2((FLOAT)xcenter, (FLOAT)ycenter), (FLOAT)r, (FLOAT)r);
-	GRAPHICSDEVICEMANAGER->GetGraphics()->GetRenderTarget()->FillEllipse(ellipse, GRAPHICSDEVICEMANAGER->GetGraphics()->GetColorBrush());
+	Singleton<GraphicsDeviceManager>::GetInstance()->GetGraphics()->GetRenderTarget()->FillEllipse(ellipse, Singleton<GraphicsDeviceManager>::GetInstance()->GetGraphics()->GetColorBrush());
 
 }
 
@@ -114,7 +118,7 @@ void Renderer::FillPolygon(Vector2D* points, int size) {
 		return;
 	HRESULT hr;
 	ID2D1PathGeometry* pGeometry=nullptr;
-	hr = GRAPHICSDEVICEMANAGER->GetGraphics()->GetD2DFactory()->CreatePathGeometry(&pGeometry);
+	hr = Singleton<GraphicsDeviceManager>::GetInstance()->GetGraphics()->GetD2DFactory()->CreatePathGeometry(&pGeometry);
 	if (FAILED(hr)) {
 		SafeRelease(pGeometry);
 		//Logger::Log(_T("Failed to create path geometry"),LOGTYPE_WARNING,false);
@@ -143,7 +147,7 @@ void Renderer::FillPolygon(Vector2D* points, int size) {
 	}
 
 	if (SUCCEEDED(hr)) {
-		GRAPHICSDEVICEMANAGER->GetGraphics()->GetRenderTarget()->FillGeometry(pGeometry, GRAPHICSDEVICEMANAGER->GetGraphics()->GetColorBrush());
+		Singleton<GraphicsDeviceManager>::GetInstance()->GetGraphics()->GetRenderTarget()->FillGeometry(pGeometry, Singleton<GraphicsDeviceManager>::GetInstance()->GetGraphics()->GetColorBrush());
 		SafeRelease(pGeometry);
 		return;
 	}

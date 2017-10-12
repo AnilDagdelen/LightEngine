@@ -17,7 +17,7 @@ class Timer;
 
 //struct
 struct EngineTimerData : public SystemData {
-	EngineTimerData() :SystemData(SystemType::Sys_EngineTimer) {
+	EngineTimerData() :SystemData(_T("Engine Timer"),SystemType::Sys_EngineTimer) {
 
 	}
 };

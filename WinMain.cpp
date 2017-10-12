@@ -10,9 +10,24 @@
 #include "iostream.h"
 #endif // !_IOSTREAM_H
 
+#ifndef _GRAPHICSDEVICEMANAGER_H
+#include "GraphicsDeviceManager.h"
+#endif // !_GRAPHICSDEVICEMANAGER_H
+
+#ifndef _SINGLETON_H
+#include"Singleton.h"
+#endif // !_SINGLETON_H
+
+
+#ifndef _TYPECHECKER_H
+#include "TypeChecker.h"
+#endif // !_TYPECHECKER_H 
+
 #ifndef _DELETEMACRO_H
 #include "deletemacros.h"
 #endif
+
+
 
 
 #if defined(DEBUG)| defined(_DEBUG)
@@ -50,6 +65,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	//Delete the engine
 	SafeDelete(pEngine);
+
+	//Destroy singleton
+	Singleton<GraphicsDeviceManager>::DestroyInstance();
+	Singleton<TypeChecker>::DestroyInstance();
 
 	return result;
 

@@ -1,5 +1,5 @@
-#ifndef _UOBJECT_H
-#define _UOBJECT_H
+#ifndef _BaseObject_H
+#define _BaseObject_H
 
 //Additional include files
 
@@ -11,14 +11,56 @@
 #include "string.h"
 #endif // ! _STRING_H
 
+#ifndef _OBJECTCOUNTER_H
+#include"ObjectCounter.h"
+#endif // !_OBJECTCOUNTER_H
 
+#ifndef _SINGLETON_H
+#include"Singleton.h"
+#endif // !_SINGLETON_H
 
-class UObject
+#ifndef _TYPECHECKER_H
+#include "TypeChecker.h"
+#endif // !_TYPECHECKER
+
+//struct
+struct ObjectData
 {
+	ObjectData() :name(_T(""))
+	{
+
+	}
+	ObjectData(const std::tstring& n):name(n)
+	{
+
+	}
+
+	//void* operator new(size_t size);
+	//void operator delete(void* pdelete);
+
+	std::tstring name;
+
+};
+
+
+//Define
+//Register the type inside the typechecker class
+#define TYPE_REGISTER(class_type_id)\
+Singleton<TypeChecker>::GetInstance(true)->AddType(GetID(),_T(#class_type_id))
+//Initialize the class type with hardcoded methods
+#define TYPE_INIT(class_type_id)\
+static const std::tstring GetClassTypeId(){return _T(#class_type_id);}\
+virtual const std::tstring GetTypeId() const {return _T(#class_type_id);}
+
+class BaseObject:public ObjectCounter<BaseObject>
+{
+	TYPE_INIT(BaseObject);
+
 public:
-	UObject();
-	UObject(const std::tstring& name);
-	virtual ~UObject();
+	BaseObject();
+	BaseObject(const std::tstring& name);
+	BaseObject(ObjectData* data);
+	virtual ~BaseObject();
 
 /*
 	void* operator new(size_t size);
@@ -56,8 +98,23 @@ public:
 	void DeActivate() { m_bIsActivated = false; }
 	bool IsActivate() { return m_bIsActivated; }
 
+	template<typename T>
+	T* GetObjectData() {
+		return static_cast<T*>(m_pData);
+	}
+	ObjectData* GetRawObjectData() {
+		return m_pData;
+	}
+
+
+	int GetID(){ return m_ID; }
+	int GetObjectAmount() { return ObjectCounter<BaseObject>::GetAmount(); }
+
+	bool IsType(const std::tstring& type);
+	bool IsA(const std::tstring& type);
+
 protected:
-	static int m_objectAmount;
+
 	int m_ID;
 
 	bool m_bIsInitialized;
@@ -67,6 +124,9 @@ protected:
 	bool m_bIsPostContentLoaded;
 
 	std::tstring m_Name;
+
+	ObjectData* m_pData;
+
 
 private:
 
@@ -82,4 +142,4 @@ private:
 };
  
 
-#endif // !_UOBJECT_H
+#endif // !_BaseObject_H
