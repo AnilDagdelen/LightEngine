@@ -1,11 +1,12 @@
 #include "Game.h"
 
 
-GameData::GameData() :SystemData()
+GameData::GameData() 
+	:SystemData(_T("Game System"),SystemType::Sys_Game)
 {
 }
-GameData::GameData(const std::tstring& name, SystemType type) 
-:SystemData(name,type)
+GameData::GameData(const std::tstring& name) 
+:SystemData(name,SystemType::Sys_Game)
 {
 }
 

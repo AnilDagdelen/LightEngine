@@ -8,11 +8,10 @@
 struct GameData: public SystemData
 {
 	GameData();
-	GameData(const std::tstring& name, SystemType type);
+	GameData(const std::tstring& name);
 };
 
-class Game :
-	public System
+class Game :public System
 {
 public:
 	Game(const GameData& data);
