@@ -2,7 +2,7 @@
 
 //Additional Include files
 //#include "MemoryManager.h"
-//#include "Logger.h"
+#include "Logger.h"
 
 //Struct Window
 WindowData::WindowData():SystemData(_T(""),SystemType::Sys_Invalid),
@@ -158,7 +158,7 @@ bool Window::Initialize() {
 	//int iXWindowPos = (GetSystemMetrics(SM_CXSCREEN) - iWindowWidth)/2,iYWindowPos = (GetSystemMetrics(SM_CYSCREEN) - iWindowHeight)/2;
 
 	if (!RegisterClass(&wndClass)) {
-		//Logger::Log(_T("Failed to register window"), LOGTYPE_ERROR, true);
+		Logger::log(_T("Failed to register window"), LOGTYPE_ERROR, true);
 		return false;
 	}
 
@@ -175,7 +175,7 @@ bool Window::Initialize() {
 		if (ChangeDisplaySettings(&dmScreenSettings, CDS_FULLSCREEN) != DISP_CHANGE_SUCCESSFUL)
 		{
 			//if the Mode Fails, Use Windowed Mode.
-			//Logger::Log(_T("The Requested Fullscreen Mode Is Not Supported By \nYour Video Card."), LOGTYPE_WARNING, true);
+			Logger::log(_T("The Requested Fullscreen Mode Is Not Supported By \nYour Video Card."), LOGTYPE_WARNING, true);
 
 			dwExStyle = WS_EX_APPWINDOW;	//Window Extended Style
 			dwStyle = WS_POPUP;				//Windows Style
@@ -202,7 +202,7 @@ bool Window::Initialize() {
 		m_hInst,
 		this)))
 	{
-		//Logger::Log(_T("Failed to window handle = NULL"), LOGTYPE_ERROR, true);
+		Logger::log(_T("Failed to window handle = NULL"), LOGTYPE_ERROR, true);
 		return false;
 	}
 
@@ -232,15 +232,15 @@ bool Window::Initialize() {
 
 
 	if (!(m_hDC = GetDC(m_hWindow))) {//Did We Get A Device Context
-		//Logger::Log(_T("Can't create Device Context"), LOGTYPE_ERROR, true);
+		Logger::log(_T("Can't create Device Context"), LOGTYPE_ERROR, true);
 		return false; 
 	}
 	if (!(pixelFormat = ChoosePixelFormat(m_hDC, &pfd))) {
-		//Logger::Log(_T("Can't Find A Suitable PixelFormat"), LOGTYPE_ERROR, true);
+		Logger::log(_T("Can't Find A Suitable PixelFormat"), LOGTYPE_ERROR, true);
 		return false;
 	}
 	if (!SetPixelFormat(m_hDC,pixelFormat,&pfd)) {
-		//Logger::Log(_T("Can't Set The PixelFormat"), LOGTYPE_ERROR, true);
+		Logger::log(_T("Can't Set The PixelFormat"), LOGTYPE_ERROR, true);
 		return false;
 	}
 	ShowWindow(m_hWindow, SW_SHOW);
@@ -253,7 +253,7 @@ bool Window::Initialize() {
 	m_ResizeData.newHeight = m_Height;
 
 	if (!this->CenterWindow()) {
-		//Logger::Log(_T("Failed to center window"),LOGTYPE_ERROR,true);
+		Logger::log(_T("Failed to center window"),LOGTYPE_ERROR,true);
 		return false;
 	}
 
@@ -266,12 +266,12 @@ bool Window::Initialize() {
 		if (hConsoleMenu != 0) {
 			BOOL bRet = RemoveMenu(hConsoleMenu, SC_CLOSE, MF_BYCOMMAND);
 			if (!bRet) {
-				//Logger::Log(_T("Failed to remove close button"),LOGTYPE_ERROR,true);
+				Logger::log(_T("Failed to remove close button"),LOGTYPE_ERROR,true);
 				return false;
 			}
 		 }
 	}
-	//Logger::Log(_T("Window is initialized"),LOGTYPE_INFO,fa);
+	Logger::log(_T("Window is initialized"),LOGTYPE_INFO,false);
 
 	//Success
 	return true;

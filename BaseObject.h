@@ -66,10 +66,10 @@ public:
 	void* operator new(size_t size);
 	void operator delete(void* pdelete);*/
 
-	virtual bool Initialize()					 { m_bIsInitialized = true; return true; }
-	virtual bool PostInitialize()				 { m_bIsPostInitialized = true; return true; }
-	virtual bool LoadContent()					 { m_bIsContentLoaded = true; return true; }
-	virtual bool PostLoadContent()				 { m_bIsPostContentLoaded = true; return true; }
+	virtual bool Initialize()					 { return true; }
+	virtual bool PostInitialize()				 { return true; }
+	virtual bool LoadContent()					 { return true; }
+	virtual bool PostLoadContent()				 { return true; }
 	virtual bool Update(Context& context)		 { return true; }
 	//virtual bool LateUpdate(Context& context)  {return true;}
 	virtual bool Draw(Context& context)			 { return true; }
@@ -86,6 +86,13 @@ public:
 	bool IsContentLoaded() const { return m_bIsContentLoaded; }
 	bool IsPostContentLoaded() const { return m_bIsPostContentLoaded; }
 	
+	void SetInitialized() { m_bIsInitialized = true; }
+	void SetPostInitialized() { m_bIsPostInitialized = true; }
+	void SetContentLoaded() { m_bIsContentLoaded = true; }
+	void SetPostContentLoaded() { m_bIsPostContentLoaded = true; }
+
+	bool IsConstructed() { return m_bIsInitialized&&m_bIsPostInitialized&&m_bIsContentLoaded&&m_bIsPostContentLoaded; }
+
 	void SetCanTick(bool canTick) { m_bCanTick = canTick; }
 	bool CanTick()  const { return m_bCanTick; }
 	void SetCanDraw(bool canDraw) { m_bCanDraw = canDraw; }

@@ -1,6 +1,9 @@
 #include "Engine.h"
- 
+
 //Additional include files
+#include"Logger.h"
+#include"Singleton.h"
+
 #include"Renderer.h"
 
 #include"System.h"
@@ -8,8 +11,10 @@
 #include"Window.h"
 #include"Graphics.h"
 #include"EngineTimer.h"
+#include"GameLogic.h"
 
 #include"GraphicsDeviceManager.h"
+#include"WorldSettings.h"
 
 #ifndef _DELETEMACRO_H
 #include "deletemacros.h"
@@ -28,7 +33,7 @@ Engine::Engine()
 
 
 Engine::~Engine()
-{ 
+{
 	m_EngineState = EngineState::Destroying;
 }
 
@@ -39,7 +44,10 @@ int Engine::RunLoop() {
 	context.pRenderer = new Renderer();
 
 	if (!this->Initialize())
+	{
+		Logger::log(_T("Initialization of the engine failed"), LOGTYPE_WARNING, false);
 		return 0;
+	}
 
 	srand(GetTickCount());
 
@@ -60,11 +68,14 @@ int Engine::RunLoop() {
 		this->Draw(context);
 	}
 
-	//Logger::Log("Ending the program");
-	//Logger::WriteLogFile();
+	Logger::log(_T("Ending the program"), LOGTYPE_INFO, false);
+	Logger::writeLogFile();
 
 	if (!this->ShutDown())
-		return 0 ;
+	{
+		Logger::log(_T("Shutdown of the engine failed"), LOGTYPE_WARNING, false);
+		return 0;
+	}
 
 	return msg.wParam;
 }
@@ -72,26 +83,31 @@ int Engine::RunLoop() {
 //Private Methods
 int Engine::Initialize() {
 	m_EngineState = EngineState::Initializing;
-	
+
+	Singleton<WorldSettings>::CreateInstance();
 	Game* game = CreateGame();
 
 	if (!game)
 		return false;
 
 	//Add some systems
-	if (!AddSystem(new Window(WindowData(640, 480))))
+	if (!AddSystem(new Window(WindowData(Singleton<WorldSettings>::GetInstance()->getWindowWidth(), Singleton<WorldSettings>::GetInstance()->getWindowHeight(), Singleton<WorldSettings>::GetInstance()->getWindowTitle()))))
 		return false;
 	if (!AddSystem(new Graphics(GraphicsData(GetSystem<Window>(SystemType::Sys_Window)))))
 		return false;
 	if (!AddSystem(new EngineTimer(EngineTimerData())))
+		return false;
+	if (!AddSystem(new GameLogic(GameLogicData())))
 		return false;
 
 	//Initialize the system
 	if (!m_mapSystems[SystemType::Sys_Window]->Initialize())
 		return false;
 	if (!m_mapSystems[SystemType::Sys_Graphics]->Initialize())
-		return false; 
+		return false;
 	if (!m_mapSystems[SystemType::Sys_EngineTimer]->Initialize())
+		return false;
+	if (!m_mapSystems[SystemType::Sys_Logic]->Initialize())
 		return false;
 
 	Singleton<GraphicsDeviceManager>::CreateInstance();
@@ -105,16 +121,16 @@ int Engine::Draw(Context& context) {
 	if (graph == nullptr)
 		return false;
 
+	GameLogic* logic = GetSystem<GameLogic>(SystemType::Sys_Logic);
+	if (logic == nullptr)
+		return false;
+
 	graph->BeginDraw();
 
-	//Draw our game
-	RENDERER->SetColor(Color(1, 0, 0, 1));
-	RENDERER->DrawCircle(Vector2D(200, 200),100);
-
-	RENDERER->SetColor(Color(0, 1, 0, 1));
-	RENDERER->DrawLine(Vector2D(200, 200), Vector2D(500, 200));
+	logic->Draw(context);
 
 	graph->EndDraw();
+
 	return true;
 }
 int Engine::Update(Context& context) {
@@ -130,12 +146,13 @@ int Engine::ShutDown() {
 
 	for (std::pair<SystemType, System*> psys : m_mapSystems)
 	{
-		//if (!psys.second->ShutDown()) {
-		//	//Log::Logger("Failed to shutdown system: " + psys->GetSystemType());
-		//	continue;
-		//}
+		if (!psys.second->ShutDown()) {
+			Logger::log(_T("Failed to shutdown system: " + psys.second->GetName()),LOGTYPE_WARNING,false);
+			continue;
+		}
 		SafeDelete(psys.second);
 	}
+	Singleton<WorldSettings>::DestroyInstance();
 
 	return true;
 }

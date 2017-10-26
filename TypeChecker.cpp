@@ -1,5 +1,7 @@
 #include "TypeChecker.h"
 
+#include"Logger.h"
+
 #include<algorithm>
  
 TypeChecker::TypeChecker():
@@ -21,7 +23,7 @@ const std::tstring& TypeChecker::GetType(int objectID) {
 	std::map<int, std::vector<std::tstring>>::iterator it = m_mapTypes.find(objectID);
 	if (it == m_mapTypes.end())
 	{
-		//Logger::Log("No object has been found!");
+		Logger::log(_T("No object has been found !"),LOGTYPE_WARNING,false);
 		return m_invalidType;
 	}
 
@@ -32,12 +34,12 @@ bool TypeChecker::IsType(int objectID, const std::tstring& type) {
 	std::map<int, std::vector<std::tstring>>::iterator it = m_mapTypes.find(objectID);
 	if (it == m_mapTypes.end())
 	{
-		//Logger::Log("No object has been found!");
+		Logger::log(_T("No object has been found with type: " + type), LOGTYPE_WARNING, false);
 		return false;
 	}
 
 	if (!TypeExists(type, false)) {
-		//Logger::Log("No object has been found!");
+		Logger::log(_T("No object has been found with type: " + type), LOGTYPE_WARNING, false);
 		return false; 
 	}
 	int index = m_mapTypes[objectID].size() - 1;
@@ -48,12 +50,12 @@ bool TypeChecker::IsType(const std::tstring& type, const std::tstring& isType) {
 	std::map<int, std::vector<std::tstring>>::iterator itmap_to = m_mapTypes.end();
 
 	if (!TypeExists(type,itmap_from))
-	{ 
-		//Logger::Log("No object has been found!");
+	{
+		Logger::log(_T("No object has been found with type: " + type + _T("and type: ") + isType), LOGTYPE_WARNING, false);
 		return false;
 	}
 	if (!TypeExists(type, itmap_from, false)) {
-		//Logger::Log("No object has been found!");
+		Logger::log(_T("No object has been found with type: " + type +_T("and type: ")+isType), LOGTYPE_WARNING, false);
 		return false;
 	}
 
@@ -66,11 +68,11 @@ bool TypeChecker::IsA(int objectID, const std::tstring& type)
 	std::map<int, std::vector<std::tstring>>::iterator it = m_mapTypes.find(objectID);
 	if (it == m_mapTypes.end())
 	{
-		//Logger::Log("No object has been found!");
+		Logger::log(_T("No object has been found with type: " + type), LOGTYPE_WARNING, false);
 		return false;
 	}
 	if (!TypeExists(type)) {
-		//Logger::Log("No object has been found!");
+		Logger::log(_T("No object has been found with type: " + type), LOGTYPE_WARNING, false);
 		return false;
 	}
 	std::vector<std::tstring>::iterator it_type = std::find(m_mapTypes[objectID].begin(), m_mapTypes[objectID].end(), type);
@@ -83,11 +85,11 @@ bool TypeChecker::IsA(const std::tstring& type, const std::tstring& isType)
 
 	if (!TypeExists(type, itmap_from))
 	{
-		//Logger::Log("No object has been found!");
+		Logger::log(_T("No object has been found with type: " + type + _T("and type: ") + isType), LOGTYPE_WARNING, false);
 		return false;
 	}
 	if (!TypeExists(type, itmap_from, false)) {
-		//Logger::Log("No object has been found!");
+		Logger::log(_T("No object has been found with type: " + type + _T("and type: ") + isType), LOGTYPE_WARNING, false);
 		return false;
 	}
 	std::vector<std::tstring>::iterator it_type = std::find(m_mapTypes[(*itmap_from).first].begin(), m_mapTypes[(*itmap_from).first].end(), type);

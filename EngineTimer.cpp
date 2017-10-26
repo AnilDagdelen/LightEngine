@@ -1,7 +1,7 @@
 #include "EngineTimer.h"
 
-//#include "MemoryManager.h.h"
-//#include "Logger.h.h"
+//#include "MemoryManager.h"
+#include "Logger.h"
 
 #include "Timer.h"
 
@@ -46,7 +46,7 @@ bool EngineTimer::Initialize() {
 	m_pWorldTimer->PostInitialized();
 	m_pWorldTimer->SetPostInitialized();
 #endif
-	//Logger::Log(_T("Engine Timer initialized"),LOGTYPE_INFO,false);
+	Logger::log(_T("Engine Timer initialized"),LOGTYPE_INFO,false);
 	return true;
 }
 bool EngineTimer::Update(Context& context) {

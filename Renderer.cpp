@@ -4,6 +4,9 @@
 #include"Graphics.h"
 #include"GraphicsDeviceManager.h"
 
+
+#include"Logger.h"
+
 #ifndef _DELETEMACROS_H
 #include "deletemacros.h"  
 #endif // !_DEFINEMACROS
@@ -121,7 +124,7 @@ void Renderer::FillPolygon(Vector2D* points, int size) {
 	hr = Singleton<GraphicsDeviceManager>::GetInstance()->GetGraphics()->GetD2DFactory()->CreatePathGeometry(&pGeometry);
 	if (FAILED(hr)) {
 		SafeRelease(pGeometry);
-		//Logger::Log(_T("Failed to create path geometry"),LOGTYPE_WARNING,false);
+		Logger::log(_T("Failed to create path geometry"),LOGTYPE_WARNING,false);
 		return;
 	}
 
@@ -132,7 +135,7 @@ void Renderer::FillPolygon(Vector2D* points, int size) {
 		SafeRelease(pGeometrySink);
 		SafeRelease(pGeometry);
 
-		//Logger::Log(_T("Failed to create geometry sink"),LOGTYPE_WARNING,false);
+		Logger::log(_T("Failed to create geometry sink"),LOGTYPE_WARNING,false);
 		return;
 	}
 	if (SUCCEEDED(hr)) {

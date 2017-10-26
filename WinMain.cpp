@@ -10,6 +10,11 @@
 #include "iostream.h"
 #endif // !_IOSTREAM_H
 
+#ifndef _LOGGER_H
+#include"Logger.h"
+#endif // !_LOGGER_H
+
+
 #ifndef _GRAPHICSDEVICEMANAGER_H
 #include "GraphicsDeviceManager.h"
 #endif // !_GRAPHICSDEVICEMANAGER_H
@@ -35,6 +40,7 @@ int _tmain(int argc, char* argv[]) {
 	UNREFERENCED_PARAMETER(argc);
 	UNREFERENCED_PARAMETER(argv);
 
+	Logger::log(_T("Start of the application"),LOGTYPE_INFO,false);
 	//Logger::Log("Starting the program");
 
 	//Run WinMain function

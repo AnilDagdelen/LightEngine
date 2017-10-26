@@ -18,6 +18,7 @@ enum SystemType
 	Sys_Input,
 	Sys_Graphics,
 	Sys_EngineTimer,
+	Sys_Logic,
 
 	Sys_MAX
 };

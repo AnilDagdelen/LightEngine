@@ -58,6 +58,18 @@
     <Filter Include="Header Files\Helpers">
       <UniqueIdentifier>{e8b515fa-aa14-42d7-97b5-9c9e7580af83}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{59608670-e256-42e2-8d04-328cf6c3d91e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Systems\GameLogic">
+      <UniqueIdentifier>{0b91cdd4-7d87-40e1-ac8a-761315aacb76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SceneGraph\Scene">
+      <UniqueIdentifier>{7ec87f8b-f11c-41a7-b02d-7211da9d07e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Helpers\Factory">
+      <UniqueIdentifier>{4161a6a9-fb2a-4e04-afa9-307e3df8b996}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -105,8 +117,29 @@
     <ClCompile Include="Singleton.cpp">
       <Filter>Header Files\Helpers</Filter>
     </ClCompile>
-    <ClCompile Include="TypeChecker.cpp">
+    <ClCompile Include="Logger.cpp">
+      <Filter>Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TypeChecker.cpp">
+      <Filter>Header Files\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLogic.cpp">
+      <Filter>Header Files\Core\Systems\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Header Files\SceneGraph\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldSettings.cpp">
+      <Filter>Header Files\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneFactory.cpp">
+      <Filter>Header Files\Helpers\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Header Files\SceneGraph\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -176,8 +209,41 @@
     <ClInclude Include="Singleton.h">
       <Filter>Header Files\Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="TypeChecker.h">
+    <ClInclude Include="Logger.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="assert.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LogType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeChecker.h">
+      <Filter>Header Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="stringstream.h">
+      <Filter>Header Files\Defines</Filter>
+    </ClInclude>
+    <ClInclude Include="fstream.h">
+      <Filter>Header Files\Defines</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLogic.h">
+      <Filter>Header Files\Core\Systems\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Header Files\SceneGraph\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldSettings.h">
+      <Filter>Header Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneFactory.h">
+      <Filter>Header Files\Helpers\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files\SceneGraph\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

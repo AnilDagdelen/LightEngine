@@ -1,5 +1,7 @@
 #include "Graphics.h"
 
+#include"Logger.h"
+
 #include "Window.h"
 
 #ifndef _DELETEMACROS_H
@@ -47,7 +49,7 @@ bool Graphics::Initialize() {
 	if (FAILED(hr))
 		return false;
 
-	//Logger::Log(_T("Graphics is initialized"),LOGTYPE_INFO,false);
+	Logger::log(_T("Graphics is initialized"),LOGTYPE_INFO,false);
 	return true;
 }
 
